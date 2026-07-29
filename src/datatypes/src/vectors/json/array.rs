@@ -123,10 +123,7 @@ impl JsonArray<'_> {
         let array_fields = struct_array.fields();
         let array_columns = struct_array.columns();
         let DataType::Struct(expect_fields) = expect else {
-            return AlignJsonArraySnafu {
-                reason: "expect struct datatype",
-            }
-            .fail();
+            return self.try_cast(expect);
         };
         let mut aligned = Vec::with_capacity(expect_fields.len());
 

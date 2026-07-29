@@ -289,7 +289,7 @@ impl JsonType {
         matches!(self.format, JsonFormat::Json2(_))
     }
 
-    pub(crate) fn native_type(&self) -> &JsonNativeType {
+    pub fn native_type(&self) -> &JsonNativeType {
         match &self.format {
             JsonFormat::Jsonb => &JsonNativeType::String,
             JsonFormat::Json2(x) => x.as_ref(),
